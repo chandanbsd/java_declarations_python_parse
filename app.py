@@ -35,21 +35,22 @@ with open('test.java') as fref:
         line = line.replace('final','')
         line = line.replace('static','')
         line = line.strip()
+
         
         if re.match('int [a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('Integer Variable Declared')
 
-        if re.match('int ([a-zA-Z_][a-zA-Z_0-9]*,)+,[a-zA-Z_][a-zA-Z_0-9]* ;',line):
+        if re.match('int ([a-zA-Z_][a-zA-Z_0-9]*,)+[a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('Multiple Integer Variables Declared')
 
         if re.match('int [a-zA-Z_][a-zA-Z_0-9]*\[\];',line):
             print('Integer Array Declared')
 
-        
+
         if re.match('float [a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('Floating Point Variable Declared')
 
-        if re.match('float ([a-zA-Z_][a-zA-Z_0-9]*,)+,[a-zA-Z_][a-zA-Z_0-9]* ;',line):
+        if re.match('float ([a-zA-Z_][a-zA-Z_0-9]*,)+[a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('Multiple Floating Point Variables Declared')
 
         if re.match('float [a-zA-Z_][a-zA-Z_0-9]*\[\];',line):
@@ -60,7 +61,7 @@ with open('test.java') as fref:
         if re.match('String [a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('String Variable Declared')
 
-        if re.match('String ([a-zA-Z_][a-zA-Z_0-9]*,)+,[a-zA-Z_][a-zA-Z_0-9]* ;',line):
+        if re.match('String ([a-zA-Z_][a-zA-Z_0-9]*,)+[a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('String Variables Declared')
 
         if re.match('String [a-zA-Z_][a-zA-Z_0-9]*\[\];',line):
@@ -70,7 +71,7 @@ with open('test.java') as fref:
         if re.match('char [a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('Character Variable Declared')
 
-        if re.match('char ([a-zA-Z_][a-zA-Z_0-9]*,)+,[a-zA-Z_][a-zA-Z_0-9]* ;',line):
+        if re.match('char ([a-zA-Z_][a-zA-Z_0-9]*,)+[a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('Multiple Character Variables Declared')
 
         if re.match('char [a-zA-Z_][a-zA-Z_0-9]*\[\];',line):
