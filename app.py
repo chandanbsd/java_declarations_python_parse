@@ -16,10 +16,10 @@ with open('test.java') as fref:
         if re.search('public',line):
             print('Public Acess Specified',end=" ")
         
-        if re.search('private',line):
+        elif re.search('private',line):
             print('Private Acess Specified',end=" ")
 
-        if re.search('protected',line):
+        elif re.search('protected',line):
             print('Protected Acess Specified',end=" ")
 
         if re.search('static',line):
@@ -28,6 +28,14 @@ with open('test.java') as fref:
         if re.search('final',line):
             print('Constant Declaration',end=" ")
             
+        
+        line = line.replace('private','')
+        line = line.replace('public','')
+        line = line.replace('protected','')
+        line = line.replace('final','')
+        line = line.replace('static','')
+        line = line.strip()
+        
         if re.match('int [a-zA-Z_][a-zA-Z_0-9]*;',line):
             print('Integer Variable Declared')
 
