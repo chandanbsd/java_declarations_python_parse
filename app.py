@@ -1,13 +1,13 @@
 import re
 
-with open('output.java', 'w') as outf:
-    with open('test.java') as fref:
+with open('correct.java', 'w') as outf:
+    with open('input.java') as fref:
 
         lines = fref.readlines()
         
         sflag = 0
-        count = 0
-        
+        eflag = 0
+        count = 1
         
         for line in lines:
             flag = 0 
@@ -35,8 +35,10 @@ with open('output.java', 'w') as outf:
             line = line.strip()
 
             if(sflag == 0):
-                print('Class declaration not begun correctly')
-                outf.write('class autoCreate {')
+                print('***************ERROR : at line {}'.format(count))
+                print('***************Class declaration not begun correctly')
+                outf.write('class autoCreate {\n')
+                sflag = 1
             
             
 
@@ -138,23 +140,25 @@ with open('output.java', 'w') as outf:
                 outf.write(re.match('char [a-zA-Z_][a-zA-Z_0-9]*\[\];',line).group(0) + '\n')
                 flag = 1
 
+            if flag == 0:
+                print('***************ERROR : at line {}'.format(count))
+
+                print('***************Semicolon missing')
+                key_list = ['public', 'private', 'static', 'protected', 'final']
+                    
+                for item in key_list:
+                    line.replace(item,'')
+                outf.write(line + ';\n')
+
+
             if re.match('}', line):
                 print('End of class declaration')
                 outf.write(re.match('}', line).group(0) + '\n')
-                flag = 1
                 break
-
-            if flag == 0:
-                print('Syntax Error at line {}'.format(count))
-
-                if count == len(lines):
-                    print('Class declarations not closed')
-                    outf.write('}\n')
-                
-                else:
-                    print('Semicolon missing')
-                    key_list = ['public', 'private', 'static', 'protected', 'final']
-                    
-                    for item in key_list:
-                        line.replace(item,'')
-                    outf.write(line + ';\n')
+            
+            if len(lines) == count:
+                print('***************ERROR')
+                print('***************Class declaration not closed')
+                outf.write('}\n')
+           
+            
