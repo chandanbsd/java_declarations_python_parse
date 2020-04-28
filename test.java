@@ -5,7 +5,7 @@ class test{
     int a;
     float b[];
     String c;
-    char d[];
+    char d[]
 
     public int va,vb,vc,vd;
     
