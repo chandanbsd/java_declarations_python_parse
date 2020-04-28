@@ -43,8 +43,9 @@ with open('correct.java', 'w') as outf:
             
 
             if re.search('public',line):
-                print('Public Acess Specified',end=" ")
-                outf.write('public ')
+                print('***************ERROR : at line {}'.format(count))
+                print('***************Error: Class Variables Must Be Private***',end=" ")
+                outf.write('private ')
                
             
             elif re.search('private',line):
@@ -53,8 +54,9 @@ with open('correct.java', 'w') as outf:
                 
 
             elif re.search('protected',line):
-                print('Protected Acess Specified',end=" ")
-                outf.write('protected ')
+                print('***************ERROR : at line {}'.format(count))
+                print('***************Error: Class Variables Must Be Private***',end=" ")
+                outf.write('private ')
                 
 
             if re.search('static',line):
@@ -139,8 +141,16 @@ with open('correct.java', 'w') as outf:
                 print('Character Arary Declared')
                 outf.write(re.match('char [a-zA-Z_][a-zA-Z_0-9]*\[\];',line).group(0) + '\n')
                 flag = 1
+            
 
-            if flag == 0:
+
+            if re.match('}', line):
+                print('End of class declaration')
+                outf.write(re.match('}', line).group(0) + '\n')
+                flag = 1
+                break
+
+            if flag == 0 and len(lines) != count:
                 print('***************ERROR : at line {}'.format(count))
 
                 print('***************Semicolon missing')
@@ -149,16 +159,11 @@ with open('correct.java', 'w') as outf:
                 for item in key_list:
                     line.replace(item,'')
                 outf.write(line + ';\n')
-
-
-            if re.match('}', line):
-                print('End of class declaration')
-                outf.write(re.match('}', line).group(0) + '\n')
-                break
             
             if len(lines) == count:
                 print('***************ERROR')
                 print('***************Class declaration not closed')
                 outf.write('}\n')
+                break
            
             
