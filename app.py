@@ -44,7 +44,7 @@ with open('correct.java', 'w') as outf:
 
             if re.search('public',line):
                 print('***************ERROR : at line {}'.format(count))
-                print('***************Error: Class Variables Must Be Private***',end=" ")
+                print('***************Error: Variables Inside Class Must Be Private***',end=" ")
                 outf.write('private ')
                
             
@@ -55,7 +55,7 @@ with open('correct.java', 'w') as outf:
 
             elif re.search('protected',line):
                 print('***************ERROR : at line {}'.format(count))
-                print('***************Error: Class Variables Must Be Private***',end=" ")
+                print('***************Error: Variables Inside Class Must Be Private***',end=" ")
                 outf.write('private ')
                 
 

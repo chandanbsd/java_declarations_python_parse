@@ -1,5 +1,7 @@
 import java.util.*;
-class Test{
+class autoCreate {
 private int a;
+private static char s,d,e;
+private final float x[];
 private int b;
 }
