@@ -8,11 +8,10 @@ with open('correct.java', 'w') as outf:
         sflag = 0
         eflag = 0
         count = 1
-        
         for line in lines:
             flag = 0 
             count += 1
-            
+
             line2 = line.rstrip()
             if line2 == '':
                 continue
@@ -143,7 +142,6 @@ with open('correct.java', 'w') as outf:
                 flag = 1
             
 
-
             if re.match('}', line):
                 print('End of class declaration')
                 outf.write(re.match('}', line).group(0) + '\n')
@@ -160,10 +158,8 @@ with open('correct.java', 'w') as outf:
                     line.replace(item,'')
                 outf.write(line + ';\n')
             
-            if len(lines) == count:
+            if len(lines) == count and sflag == 0:
                 print('***************ERROR')
                 print('***************Class declaration not closed')
                 outf.write('}\n')
                 break
-           
-            
