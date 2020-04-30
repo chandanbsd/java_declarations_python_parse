@@ -7,21 +7,24 @@ with open('correct.java', 'w') as outf:
         
         sflag = 0
         eflag = 0
-        count = 1
+        count = 0
         for line in lines:
             flag = 0 
             count += 1
 
             line2 = line.rstrip()
             if line2 == '':
-                continue
+                if len(lines) == count:
+                    pass
+                else:
+                    continue
             
 
             if re.match('import [_a-zA-Z]+[._a-zA-Z*]+',line):
                 print('Java library or API included')
                 flag = 1
                 outf.write(line)
-                continue
+                
                 
             
                 
@@ -146,6 +149,7 @@ with open('correct.java', 'w') as outf:
                 print('End of class declaration')
                 outf.write(re.match('}', line).group(0) + '\n')
                 flag = 1
+                eflag = 1
                 break
 
             if flag == 0 and len(lines) != count:
@@ -158,7 +162,7 @@ with open('correct.java', 'w') as outf:
                     line.replace(item,'')
                 outf.write(line + ';\n')
             
-            if len(lines) == count and sflag == 0:
+            if len(lines) == count and eflag == 0:
                 print('***************ERROR')
                 print('***************Class declaration not closed')
                 outf.write('}\n')

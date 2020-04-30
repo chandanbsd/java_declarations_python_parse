@@ -1,6 +1,7 @@
 import java.util.*;
 
-class test{
+
+    
     public int a;
     static public char s,d,e;
 
@@ -8,4 +9,5 @@ class test{
     
     
     private int b; 
-}   
+
+
